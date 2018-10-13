@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Home from './Home.vue';
-import Debate from './Debate.vue';
+import Home from './home/Home.vue';
+import Debate from './debate/Debate.vue';
 
 
 Vue.use(Router);

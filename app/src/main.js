@@ -1,21 +1,21 @@
-import axios from 'axios';
 import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
 
 import Vue from 'vue'
+import injector from 'vue-inject';
 import VueOnsen from 'vue-onsenui';
-import VueAxios from 'vue-axios';
 
 import router from './router'
 import i18n from './i18n'
+require('./bootstrap');
 
 import App from './App.vue';
 
 
+Vue.use(injector);
+
 Vue.use(VueOnsen);
 VueOnsen.platform.select('chrome');
-
-Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false;
 

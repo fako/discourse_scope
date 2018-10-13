@@ -16,6 +16,7 @@
 
     export default {
         name: 'home',
+        dependencies : ['Api'],
         components: {},
         data() {
             return {
