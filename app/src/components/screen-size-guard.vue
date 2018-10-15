@@ -18,7 +18,7 @@
 
     export default {
         name: 'screen-size-guard',
-        dependencies: ['$window', '$log'],
+        dependencies: ['$window'],
         components: {},
         props: {
             minimalWidth: {
