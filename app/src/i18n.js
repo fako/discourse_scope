@@ -8,7 +8,8 @@ Vue.use(VueI18n);
 const messages = {
     en: {
         message: {
-            home: 'home',
+            explore_which_debate: 'Which debate would you like to research?',
+            add_debate: 'Add a debate',
             go_to_debate: 'go to debate',
             debate: 'debate',
             back: 'back'
@@ -16,7 +17,8 @@ const messages = {
     },
     nl: {
         message: {
-            home: 'home',
+            explore_which_debate: 'Welk debat wil je onderzoeken?',
+            add_debate: 'Voeg een debat toe',
             go_to_debate: 'ga naar het debat',
             debate: 'debat',
             back: 'terug'

@@ -53,6 +53,51 @@
 
 </script>
 
-<style>
+<style lang="scss">
+
+    @import "styles/variables";
+
+    .toolbar+.page__background, .toolbar+.page__background+.page__content {
+        top: $toolbar-height;
+    }
+    .page__background {
+        background: #DEDEDE;
+    }
+
+    .toolbar {
+        height: $toolbar-height;
+        background: white;
+        padding: 0 120px;
+
+        .select-input {
+            vertical-align: middle;
+            border-top: 1px solid black;
+            border-bottom: 2px solid $orange;
+            height: 50px;
+        }
+
+        h1 {
+            margin: 0;
+
+        }
+
+        .button {
+            margin-right: 40px;
+        }
+    }
+    .toolbar__left, .toolbar__center, .toolbar__right {
+        line-height: $toolbar-height;
+    }
+    h1 {
+        font-size: 30px;
+        font-weight: 400;
+    }
+
+    .button {
+        color: black;
+        border: 1px solid black;
+        background: white;
+        line-height: 40px;
+    }
 
 </style>

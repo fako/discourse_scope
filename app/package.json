@@ -23,6 +23,8 @@
         "@vue/cli-plugin-eslint": "3.0.4",
         "@vue/cli-service": "3.0.4",
         "moxios": "0.4.0",
+        "node-sass": "4.9.4",
+        "sass-loader": "7.1.0",
         "vue-template-compiler": "2.5.17"
     },
     "eslintConfig": {

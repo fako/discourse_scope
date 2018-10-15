@@ -1,11 +1,15 @@
 <template>
     <v-ons-page id="home">
         <v-ons-toolbar>
-            <div class="center">{{ $t("message.home") }}</div>
+            <div class="left"><h1>{{ $t("message.explore_which_debate") }}</h1></div>
+            <div class="center"></div>
             <div class="right">
-                <select title="switchLanguage" v-model="$i18n.locale">
-                    <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
-                </select>
+                <ons-button>{{ $t("message.add_debate") }}</ons-button>
+                <ons-select>
+                    <select title="switchLanguage" v-model="$i18n.locale">
+                        <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
+                    </select>
+                </ons-select>
             </div>
         </v-ons-toolbar>
         <div><router-link :to="{name: 'debate'}">{{ $t("message.go_to_debate") }}</router-link></div>
