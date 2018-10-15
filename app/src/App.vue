@@ -1,13 +1,19 @@
 <template>
-    <v-ons-navigator id="app" swipeable swipe-target-width="200px"
-        :page-stack="pageStack"
-        :pop-page="goBack"
-    ></v-ons-navigator>
+    <div id="app">
+        <v-ons-navigator id="app" swipeable swipe-target-width="200px"
+            :page-stack="pageStack"
+            :pop-page="goBack"
+        ></v-ons-navigator>
+        <screen-size-guard/>
+    </div>
 </template>
 
 <script>
 
+    import ScreenSizeGuard from "./components/screen-size-guard";
+
     export default {
+        components: {ScreenSizeGuard},
         name: 'app',
 
         data() {
