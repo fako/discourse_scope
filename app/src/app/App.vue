@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div>
         <v-ons-navigator id="app" swipeable swipe-target-width="200px"
             :page-stack="pageStack"
             :pop-page="goBack"
@@ -55,7 +55,7 @@
 
 <style lang="scss">
 
-    @import "styles/variables";
+    @import "../variables";
 
     .toolbar+.page__background, .toolbar+.page__background+.page__content {
         top: $toolbar-height;

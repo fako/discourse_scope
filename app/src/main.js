@@ -9,7 +9,7 @@ import router from './router'
 import i18n from './i18n'
 require('./bootstrap');
 
-import App from './App.vue';
+import App from './app/App.vue';
 
 
 Vue.use(injector);
