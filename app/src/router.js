@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Home from './home/Home.vue';
-import Debate from './debate/Debate.vue';
+import Discourse from './discourse/Discourse.vue';
 
 
 Vue.use(Router);
@@ -16,9 +16,9 @@ const router = new Router({
             component: Home,
             children: [
                 {
-                    path: 'debate',
-                    name: 'debate',
-                    component: Debate,
+                    path: 'discourse',
+                    name: 'discourse',
+                    component: Discourse,
                     children: []
                 }
             ]
