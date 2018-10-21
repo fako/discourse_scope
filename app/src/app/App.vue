@@ -57,6 +57,10 @@
 
     @import "../variables";
 
+    * {
+        box-sizing: border-box;
+    }
+
     .toolbar+.page__background, .toolbar+.page__background+.page__content {
         top: $toolbar-height;
     }
@@ -78,7 +82,8 @@
 
         h1 {
             margin: 0;
-
+            font-size: 30px;
+            font-weight: 400;
         }
 
         .button {
@@ -88,9 +93,19 @@
     .toolbar__left, .toolbar__center, .toolbar__right {
         line-height: $toolbar-height;
     }
-    h1 {
-        font-size: 30px;
-        font-weight: 400;
+    .page__content {
+        h1 {
+            font-size: 30px;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 17px;
+        }
+
+        p {
+            font-size: 12px;
+        }
     }
 
     .button {
