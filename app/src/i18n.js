@@ -10,7 +10,7 @@ const messages = {
         message: {
             explore_which_discourse: 'Which discourse would you like to research?',
             add_discourse: 'Add a discourse',
-            go_to_discourse: 'go to discourse',
+            start_research: 'Start research',
             discourse: 'discourse',
             back: 'back'
         }
@@ -19,7 +19,7 @@ const messages = {
         message: {
             explore_which_discourse: 'Welk debat wil je onderzoeken?',
             add_discourse: 'Voeg een debat toe',
-            go_to_discourse: 'ga naar het debat',
+            start_research: 'Start onderzoek',
             discourse: 'debat',
             back: 'terug'
         }

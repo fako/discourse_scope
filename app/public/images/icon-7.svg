@@ -1,0 +1,15 @@
+<svg width="164" height="164" viewBox="0 0 164 164" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="82" cy="82" r="82" fill="black" fill-opacity="0.73"/>
+<circle cx="69" cy="95" r="69" fill="black"/>
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="52" y="53" width="60" height="60">
+<circle cx="82" cy="83" r="30" fill="#F15100"/>
+</mask>
+<g mask="url(#mask0)">
+<rect x="41.9698" y="68.8376" width="4.06794" height="64.3902" transform="rotate(-30 41.9698 68.8376)" fill="#B2E9B5"/>
+<rect x="51.1033" y="63.5645" width="4.06794" height="64.3902" transform="rotate(-30 51.1033 63.5645)" fill="#B2E9B5"/>
+<rect x="60.6718" y="58.04" width="4.06794" height="64.3902" transform="rotate(-30 60.6718 58.04)" fill="#B2E9B5"/>
+<rect x="69.8053" y="52.7668" width="4.06794" height="64.3902" transform="rotate(-30 69.8053 52.7668)" fill="#B2E9B5"/>
+<rect x="79.3738" y="47.2424" width="4.06794" height="64.3902" transform="rotate(-30 79.3738 47.2424)" fill="#B2E9B5"/>
+<rect x="88.5073" y="41.9692" width="4.06794" height="64.3902" transform="rotate(-30 88.5073 41.9692)" fill="#B2E9B5"/>
+</g>
+</svg>

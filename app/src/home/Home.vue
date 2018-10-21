@@ -13,16 +13,20 @@
                 </ons-select>
             </div>
         </v-ons-toolbar>
-        <div><router-link :to="{name: 'debate'}">{{ $t("message.go_to_debate") }}</router-link></div>
+
+        <discourse-list/>
+
     </v-ons-page>
 </template>
 
 <script>
 
+    import DiscourseList from './components/discourse-list'
+
     export default {
         name: 'home',
         dependencies : ['Api'],
-        components: {},
+        components: {DiscourseList},
         data() {
             return {
                 langs: ['en', 'nl']
