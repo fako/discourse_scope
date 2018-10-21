@@ -2,7 +2,7 @@
     <div class="discourse-list">
         <ons-row v-for="(row, index) in discourses[$i18n.locale]" v-bind:key="index">
             <ons-col v-for="discourse in row" v-bind:key="discourse.id">
-                <div class="discourse" v-on:click="$router.push('discourse')">
+                <div class="discourse" v-on:click="goToDiscourse(discourse)">
                     <div>
                         <img v-bind:src="'images/icon-' + discourse.id % 8 + '.svg'"/>
                     </div>
@@ -25,24 +25,34 @@
 
     export default {
         name: 'discourse-list',
-        dependencies : ['$log', 'Api'],
+        dependencies : ['$log', 'Discourses'],
         data() {
             return {
-                discourses: []
+                discourses: {}
             }
         },
         created() {
             let self = this;
-            this.Api.listDiscourses()
-                .then(function(response) {
-                    self.discourses = response.data;
-                    _.forEach(response.data, function(discourses, language) {
-                        self.discourses[language] = _.chunk(self.discourses[language], 3)
+            this.Discourses.byLanguage()
+                .then(function(byLanguage) {
+                    self.discourses = {};
+                    _.forEach(byLanguage, function(discourses, language) {
+                        self.discourses[language] = _.chunk(discourses, 3)
                     });
                 })
                 .catch(function(error) {
                     self.$log(error);
                 });
+        },
+        methods: {
+            goToDiscourse(discourse) {
+                this.$router.push({
+                    name: 'discourse',
+                    params: {
+                        id: discourse.id
+                    }
+                })
+            }
         }
     }
 

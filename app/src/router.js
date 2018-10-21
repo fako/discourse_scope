@@ -16,7 +16,7 @@ const router = new Router({
             component: Home,
             children: [
                 {
-                    path: 'discourse',
+                    path: 'discourse/:id',
                     name: 'discourse',
                     component: Discourse,
                     children: []

@@ -25,7 +25,6 @@
 
     export default {
         name: 'home',
-        dependencies : ['Api'],
         components: {DiscourseList},
         data() {
             return {
