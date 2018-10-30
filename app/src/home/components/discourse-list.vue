@@ -49,6 +49,7 @@
                 this.$router.push({
                     name: 'discourse',
                     params: {
+                        name: discourse.name,
                         id: discourse.id
                     }
                 })

@@ -65,13 +65,13 @@
         top: $toolbar-height;
     }
     .page__background {
-        background: #DEDEDE;
+        background: $gray-light;
     }
 
     .toolbar {
         height: $toolbar-height;
         background: white;
-        padding: 0 120px;
+        padding: 0 $page-margin;
 
         .select-input {
             vertical-align: middle;

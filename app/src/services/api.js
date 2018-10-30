@@ -1,4 +1,5 @@
 import _ from 'lodash'
+let Url = require('url-parse');
 
 import injector from 'vue-inject';
 
@@ -56,6 +57,19 @@ class Discourses {
         return this.axios.get(url).then(function(response) {
             self.details[response.data.id] = response.data;
             return response.data;
+        });
+    }
+
+    scope(name, language) {
+        let url = this._getUrl('service', name);
+        url += '?language=' + language;
+        return this.axios.get(url).then(function(response) {
+            return _.map(response.data.results, function(result) {
+                let url = new Url(result['url']);
+                result.source = url.hostname;
+                result.argument_score = _.round(result.argument_score, 3);
+                return result
+            });
         });
     }
 }
