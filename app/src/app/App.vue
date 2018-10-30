@@ -82,7 +82,7 @@
 
         h1 {
             margin: 0;
-            font-size: 30px;
+            font-size: $h1-font-size;
             font-weight: 400;
         }
 
@@ -95,7 +95,7 @@
     }
     .page__content {
         h1 {
-            font-size: 30px;
+            font-size: $h1-font-size;
             font-weight: 400;
         }
 
