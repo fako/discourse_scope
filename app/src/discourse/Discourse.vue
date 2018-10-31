@@ -10,8 +10,10 @@
         <div class="filters">
             <ons-row>
                 <ons-col class="search">
-                    <v-ons-input class="input-search" placeholder="Search something" v-model="query"></v-ons-input>
-                    <font-awesome-icon class="search-icon" icon="search"/>
+                    <v-ons-input class="input-search" placeholder="Search something"
+                                 v-model="query" v-on:keyup.enter="search(query)" >
+                    </v-ons-input>
+                    <font-awesome-icon class="search-icon" icon="search" @click="search(query)"/>
                 </ons-col>
             </ons-row>
         </div>
@@ -72,6 +74,17 @@
             },
             openLink(url) {
                 this.$window.open(url)
+            },
+            search(query) {
+                let keywords = query.split(' ');
+                let self = this;
+                this.Discourses.scope(this.$route.params.name, this.$i18n.locale, keywords)
+                    .then(function(results) {
+                        self.results = results;
+                    })
+                    .catch(function(error) {
+                        self.$log(error);
+                    })
             }
         }
     }

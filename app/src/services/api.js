@@ -60,18 +60,33 @@ class Discourses {
         });
     }
 
-    scope(name, language) {
+    scope(name, language, keywords) {
+
+        keywords = keywords || [];
         let url = this._getUrl('service', name);
         url += '?language=' + language;
-        return this.axios.get(url).then(function(response) {
-            return _.map(response.data.results, function(result) {
-                let url = new Url(result['url']);
-                let hostname = url.hostname;
-                result.source =  (!hostname.startsWith('www.')) ? hostname : hostname.replace('www.', '');
-                result.argument_score = _.round(result.argument_score, 3);
-                return result
+        let postData = {
+            action: 'scope',
+            config: {
+                'keywords': keywords
+            }
+        };
+
+        function formatResults(result) {
+            let url = new Url(result['url']);
+            let hostname = url.hostname;
+            result.source =  (!hostname.startsWith('www.')) ? hostname : hostname.replace('www.', '');
+            result.argument_score = _.round(result.argument_score, 3);
+            return result
+        }
+
+        return (!keywords.length) ?
+            this.axios.get(url).then(function handleResponse(response) {
+                return _.map(response.data.results, formatResults);
+            }) :
+            this.axios.post(url, postData).then(function handleResponse(response) {
+                return _.map(response.data.results, formatResults);
             });
-        });
     }
 }
 
