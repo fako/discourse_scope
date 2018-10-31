@@ -66,7 +66,8 @@ class Discourses {
         return this.axios.get(url).then(function(response) {
             return _.map(response.data.results, function(result) {
                 let url = new Url(result['url']);
-                result.source = url.hostname;
+                let hostname = url.hostname;
+                result.source =  (!hostname.startsWith('www.')) ? hostname : hostname.replace('www.', '');
                 result.argument_score = _.round(result.argument_score, 3);
                 return result
             });
