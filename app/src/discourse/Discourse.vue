@@ -6,48 +6,33 @@
                 <h1 class="back-button">{{ discourse.title }}</h1>
             </div>
         </v-ons-toolbar>
-        <h2 class="page-title">{{ $t("message.these_web_pages_best_fit_your_exploration") }}</h2>
+        <h2 class="page-title">{{ $t("message.these_web_pages_best_fit_this_debate") }}</h2>
         <div class="filters">
             <ons-row>
-                <ons-col>
-                    <v-ons-input class="search" placeholder="Search something" v-model="query"></v-ons-input>
-                </ons-col>
-            </ons-row>
-            <ons-row>
-                <ons-col>
-                    Source
-                </ons-col>
-                <ons-col>
-                    Author
-                </ons-col>
-                <ons-col>
-                    Argument coefficient
+                <ons-col class="search">
+                    <v-ons-input class="input-search" placeholder="Search something" v-model="query"></v-ons-input>
+                    <font-awesome-icon class="search-icon" icon="search"/>
                 </ons-col>
             </ons-row>
         </div>
         <div class="results">
-            <div class="row-wrapper">
-                <ons-row class="header">
-                    <ons-col width="40%">{{ $t("message.webpage_title") }}</ons-col>
+            <div class="header">
+                <ons-row>
+                    <ons-col width="55%">{{ $t("message.webpage_title") }}</ons-col>
                     <ons-col>{{ $t("message.webpage_source") }}</ons-col>
                     <ons-col>{{ $t("message.webpage_author") }}</ons-col>
                     <ons-col>{{ $t("message.webpage_argument_score") }}</ons-col>
-                    <ons-col></ons-col>
                 </ons-row>
             </div>
             <div class="row-wrapper" v-for="result in results" v-bind:key="result._id">
-                <ons-row>
-                    <ons-col width="40%">{{ result.title }}</ons-col>
+                <ons-row @click="openLink(result.url)">
+                    <ons-col width="55%">{{ result.title }}</ons-col>
                     <ons-col>{{ result.source }}</ons-col>
                     <ons-col>{{ result.author }}</ons-col>
                     <ons-col>{{ result.argument_score }}</ons-col>
-                    <ons-col>AND ACTION!</ons-col>
                 </ons-row>
             </div>
         </div>
-        <ul>
-            <li v-for="word in discourse.most_important_words" v-bind:key="word">{{ word}}</li>
-        </ul>
     </v-ons-page>
 </template>
 
@@ -55,7 +40,7 @@
 
     export default {
         name: 'discourse',
-        dependencies : ['$log', 'Discourses'],
+        dependencies : ['$window', '$log', 'Discourses'],
         data() {
             return {
                 discourse: {},
@@ -84,6 +69,9 @@
         methods: {
             goBack() {
                 document.querySelector('ons-navigator').popPage();
+            },
+            openLink(url) {
+                this.$window.open(url)
             }
         }
     }
@@ -130,7 +118,7 @@
 
         .filters {
 
-            height: 150px;
+            height: 50px;
             background: white;
 
             ons-row {
@@ -144,19 +132,37 @@
             background: white;
             border: 1px solid $gray;
             padding: 5px;
+
+            .input-search {
+                width: 90%;
+                margin-left: 10px;
+            }
+        }
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            margin: 5px;
+            color: $gray;
+            float: right;
         }
 
-        .row-wrapper:first-child {
+        .header {
             padding: 10px $page-margin;
             border: none;
-
+            color: $gray;
         }
+
         .row-wrapper {
             padding: 20px $page-margin;
             border-top: 8px solid $gray-light;
         }
+        .row-wrapper:hover {
+            background: black;
+            color: white;
+        }
         div.results {
             background: white;
+            margin-bottom: 100px;
 
             ons-col {
                 margin-right: 30px;
