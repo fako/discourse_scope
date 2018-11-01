@@ -1,7 +1,7 @@
 import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import Vue from 'vue'
@@ -21,7 +21,7 @@ Vue.use(injector);
 Vue.use(VueOnsen);
 VueOnsen.platform.select('chrome');
 
-library.add(faSearch);
+library.add(faSearch, faSpinner);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.component('v-select', vSelect);

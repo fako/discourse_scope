@@ -5,15 +5,17 @@
             :pop-page="goBack"
         ></v-ons-navigator>
         <screen-size-guard/>
+        <api-loader/>
     </div>
 </template>
 
 <script>
 
     import ScreenSizeGuard from "./components/screen-size-guard";
+    import ApiLoader from './components/api-loader'
 
     export default {
-        components: {ScreenSizeGuard},
+        components: {ScreenSizeGuard, ApiLoader},
         name: 'app',
 
         data() {

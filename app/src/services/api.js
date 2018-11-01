@@ -6,7 +6,8 @@ import injector from 'vue-inject';
 
 class Discourses {
 
-    constructor($promise, $log, axios, apiRoot) {
+    constructor($window, $promise, $log, axios, apiRoot) {
+        this.$window = $window;
         this.$promise = $promise;
         this.axios = axios;
         this.apiRoot = apiRoot;
@@ -17,6 +18,16 @@ class Discourses {
 
     _getUrl() {
         return this.apiRoot + 'discourse-search/' + Array.prototype.slice.call(arguments).join('/') + '/';
+    }
+
+    startLoading() {
+        let event = new CustomEvent('api-loading');
+        this.$window.dispatchEvent(event);
+    }
+
+    stopLoading() {
+        let event = new CustomEvent('api-done');
+        this.$window.dispatchEvent(event);
     }
 
     byLanguage() {
@@ -88,6 +99,7 @@ class Discourses {
             return result
         }
 
+        this.startLoading();
         this.loading.scope = (!keywords.length && !authors.length) ?
             this.axios.get(url).then(function handleResponse(response) {
                 return _.map(response.data.results, formatResults);
@@ -98,6 +110,7 @@ class Discourses {
 
         return this.loading.scope.finally(function() {
             delete self.loading.scope;
+            self.stopLoading();
         });
     }
 
@@ -110,4 +123,4 @@ class Discourses {
     }
 }
 
-injector.service('Discourses', ['$promise', '$log', 'axios', 'apiRoot'], Discourses);
+injector.service('Discourses', ['$window', '$promise', '$log', 'axios', 'apiRoot'], Discourses);
