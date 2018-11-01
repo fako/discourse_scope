@@ -215,7 +215,6 @@
             margin-top: 20px;
 
             p {
-                max-width: none;
                 font-size: 16px;
             }
         }

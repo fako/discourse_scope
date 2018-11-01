@@ -49,7 +49,7 @@
 
 </script>
 
-<style>
+<style lang="scss">
 
     #screen-size-guard {
         position: absolute;
@@ -61,12 +61,12 @@
 
         background: white;
         text-align: center;
-    }
 
-    h2, p {
-        margin: 0 auto;
-        padding: 5px 20px;
-        max-width: 500px;
+        h2, p {
+            margin: 0 auto;
+            padding: 5px 20px;
+            max-width: 500px;
+        }
     }
 
 </style>

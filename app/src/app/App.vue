@@ -89,7 +89,7 @@
         }
 
         .button {
-            margin-right: 40px;
+            margin-right: 30px;
         }
     }
     .toolbar__left, .toolbar__center, .toolbar__right {
