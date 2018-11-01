@@ -12,6 +12,7 @@ class Discourses {
         this.apiRoot = apiRoot;
         this.discourses = null;
         this.details = {};
+        this.loading = {};
     }
 
     _getUrl() {
@@ -60,17 +61,24 @@ class Discourses {
         });
     }
 
-    scope(name, language, keywords) {
+    scope(name, language, keywords, authors) {
+
+        if(this.loading['scope']) {
+            return this.loading['scope'];
+        }
 
         keywords = keywords || [];
+        authors = authors || [];
         let url = this._getUrl('service', name);
         url += '?language=' + language;
         let postData = {
             action: 'scope',
             config: {
-                'keywords': keywords
+                'keywords': keywords,
+                'author': authors.join('|')
             }
         };
+        let self = this;
 
         function formatResults(result) {
             let url = new Url(result['url']);
@@ -80,13 +88,25 @@ class Discourses {
             return result
         }
 
-        return (!keywords.length) ?
+        this.loading.scope = (!keywords.length && !authors.length) ?
             this.axios.get(url).then(function handleResponse(response) {
                 return _.map(response.data.results, formatResults);
             }) :
             this.axios.post(url, postData).then(function handleResponse(response) {
                 return _.map(response.data.results, formatResults);
             });
+
+        return this.loading.scope.finally(function() {
+            delete self.loading.scope;
+        });
+    }
+
+    isLoading() {
+        let calls = [];
+        _.forEach(this.loading, function(promise, call) {
+            calls.push(call);
+        });
+        return (calls.length) ? calls : null;
     }
 }
 

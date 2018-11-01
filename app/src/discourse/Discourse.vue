@@ -16,6 +16,12 @@
                     <font-awesome-icon class="search-icon" icon="search" @click="search(query)"/>
                 </ons-col>
             </ons-row>
+            <ons-row>
+                <ons-col width="200px">
+                    <multi-select-drop-down :options="discourse.authors" :title=" $t('message.select_authors')"
+                                            :onChange="authorSelect"/>
+                </ons-col>
+            </ons-row>
         </div>
         <div class="results">
             <div class="header">
@@ -40,14 +46,18 @@
 
 <script>
 
+    import MultiSelectDropDown from '../app/components/multi-select-drop-down'
+
     export default {
+        components: {MultiSelectDropDown},
         name: 'discourse',
         dependencies : ['$window', '$log', 'Discourses'],
         data() {
             return {
                 discourse: {},
                 results: [],
-                query: ''
+                query: '',
+                authors: []
             }
         },
         created() {
@@ -76,9 +86,20 @@
                 this.$window.open(url)
             },
             search(query) {
-                let keywords = query.split(' ');
+                this.keywords = query.split(' ');
                 let self = this;
-                this.Discourses.scope(this.$route.params.name, this.$i18n.locale, keywords)
+                this.Discourses.scope(this.$route.params.name, this.$i18n.locale, this.keywords, this.authors)
+                    .then(function(results) {
+                        self.results = results;
+                    })
+                    .catch(function(error) {
+                        self.$log(error);
+                    })
+            },
+            authorSelect(selection) {
+                this.authors = selection;
+                let self = this;
+                this.Discourses.scope(this.$route.params.name, this.$i18n.locale, this.keywords, this.authors)
                     .then(function(results) {
                         self.results = results;
                     })
@@ -131,7 +152,7 @@
 
         .filters {
 
-            height: 50px;
+            height: 150px;
             background: white;
 
             ons-row {
@@ -172,6 +193,7 @@
         .row-wrapper:hover {
             background: black;
             color: white;
+            cursor: pointer;
         }
         div.results {
             background: white;

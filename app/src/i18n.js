@@ -15,7 +15,8 @@ const messages = {
             webpage_title: 'Title',
             webpage_source: 'Source',
             webpage_author: 'Author',
-            webpage_argument_score: 'Opinion coefficient'
+            webpage_argument_score: 'Opinion coefficient',
+            select_authors: 'Select authors'
         }
     },
     nl: {
@@ -27,7 +28,8 @@ const messages = {
             webpage_title: 'Titel',
             webpage_source: 'Bron',
             webpage_author: 'Auteur',
-            webpage_argument_score: 'Opinie coefficient'
+            webpage_argument_score: 'Opinie coefficient',
+            select_authors: 'Selecteer auteurs'
         }
     }
 };

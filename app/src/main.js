@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Vue from 'vue'
 import injector from 'vue-inject';
 import VueOnsen from 'vue-onsenui';
+import vSelect from 'vue-select/src/components/Select';
 
 import router from './router'
 import i18n from './i18n'
@@ -22,6 +23,8 @@ VueOnsen.platform.select('chrome');
 
 library.add(faSearch);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+Vue.component('v-select', vSelect);
 
 Vue.config.productionTip = false;
 
