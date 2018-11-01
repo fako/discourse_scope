@@ -1,7 +1,7 @@
 <template>
     <ons-row id="screen-size-guard" align="center" v-show="visible">
         <ons-col>
-            <h2>Screen to small</h2>
+            <h2>Screen too small</h2>
             <p>
                 This application needs a screen that is at least {{ minimalWidth }} x {{ minimalHeight }}.
                 Your screen is {{ $window.innerWidth }} x {{ $window.innerHeight }}.
@@ -66,6 +66,12 @@
             margin: 0 auto;
             padding: 5px 20px;
             max-width: 500px;
+            font-weight: 400;
+        }
+
+        p {
+            font-size: 17px;
+            line-height: 25px;
         }
     }
 
