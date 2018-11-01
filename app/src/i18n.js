@@ -16,7 +16,8 @@ const messages = {
             webpage_source: 'Source',
             webpage_author: 'Author',
             webpage_argument_score: 'Opinion coefficient',
-            select_authors: 'Select authors'
+            select_authors: 'Select authors',
+            no_results: 'No results. Try broadening your exploration by selecting less items.'
         }
     },
     nl: {
@@ -29,7 +30,8 @@ const messages = {
             webpage_source: 'Bron',
             webpage_author: 'Auteur',
             webpage_argument_score: 'Opinie coefficient',
-            select_authors: 'Selecteer auteurs'
+            select_authors: 'Selecteer auteurs',
+            no_results: 'Geen resultaten. Probeer je exploratie te verbreden door minder te selecteren'
         }
     }
 };

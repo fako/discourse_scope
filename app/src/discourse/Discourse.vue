@@ -23,7 +23,7 @@
                 </ons-col>
             </ons-row>
         </div>
-        <div class="results">
+        <div v-show="results.length" class="results">
             <div class="header">
                 <ons-row>
                     <ons-col width="55%">{{ $t("message.webpage_title") }}</ons-col>
@@ -40,6 +40,9 @@
                     <ons-col>{{ result.argument_score }}</ons-col>
                 </ons-row>
             </div>
+        </div>
+        <div v-show="!results.length" class="no-results">
+            <p>{{ $t("message.no_results") }}</p>
         </div>
     </v-ons-page>
 </template>
@@ -204,6 +207,16 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            margin-top: 20px;
+
+            p {
+                max-width: none;
+                font-size: 16px;
             }
         }
 
