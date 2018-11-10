@@ -6,11 +6,13 @@ import injector from 'vue-inject';
 
 class Discourses {
 
-    constructor($window, $promise, $log, axios, apiRoot) {
+    constructor($window, $promise, $log, axios, apiRoot, utm) {
         this.$window = $window;
         this.$promise = $promise;
+        this.$log = $log;
         this.axios = axios;
         this.apiRoot = apiRoot;
+        this.utm = utm;
         this.discourses = null;
         this.details = {};
         this.loading = {};
@@ -121,6 +123,26 @@ class Discourses {
         });
         return (calls.length) ? calls : null;
     }
+
+    order(data) {
+
+        data = data || {};
+        let self = this;
+        let url = this._getUrl('order');
+        delete data.processing_permission;
+        if(this.utm.campaign) {
+            data.name += " (" + this.utm.campaign + ")"
+        }
+
+        return this.axios.post(url, data)
+            .then(function() {
+                self.$log.customEvent('Order', 'done', 'app');
+            })
+            .catch(function(error) {
+                self.$log.error('Failed to push order', error);
+                self.$log.customEvent('Order', 'fail', 'app');
+            });
+    }
 }
 
-injector.service('Discourses', ['$window', '$promise', '$log', 'axios', 'apiRoot'], Discourses);
+injector.service('Discourses', ['$window', '$promise', '$log', 'axios', 'apiRoot', 'utm'], Discourses);
