@@ -1,1 +1,2 @@
+require('./logging');
 require('./api');

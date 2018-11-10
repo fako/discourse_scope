@@ -10,7 +10,7 @@
         <div class="filters">
             <ons-row>
                 <ons-col class="search">
-                    <v-ons-input class="input-search" placeholder="Search something"
+                    <v-ons-input class="input-search" v-bind:placeholder="$t('message.search_placeholder')"
                                  v-model="query" v-on:keyup.enter="search(query)" >
                     </v-ons-input>
                     <font-awesome-icon class="search-icon" icon="search" @click="search(query)"/>
@@ -69,6 +69,7 @@
             this.Discourses.get(this.$route.params.id, true)
                 .then(function(discourse) {
                     self.discourse = discourse;
+                    self.$i18n.locale = discourse.language;
                 })
                 .catch(function(error) {
                     self.$log(error);

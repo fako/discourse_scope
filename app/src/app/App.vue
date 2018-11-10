@@ -50,6 +50,21 @@
 
             /* On route change, reset the pageStack to the next route */
             this.$router.beforeEach((to, from, next) => mapRouteStack(to) && next());
+
+            /* Sets the tab title */
+            document.title = this.$t('message.app_title');
+        },
+
+        computed: {
+            locale: function() {
+                return this.$i18n.locale;
+            }
+        },
+
+        watch: {
+            locale: function() {
+                document.title = this.$t('message.app_title');
+            }
         }
     }
 
