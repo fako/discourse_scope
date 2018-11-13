@@ -61,7 +61,8 @@
                 discourse: {},
                 results: [],
                 query: '',
-                authors: []
+                authors: null,
+                keywords: []
             }
         },
         created() {
@@ -82,6 +83,7 @@
                 document.querySelector('ons-navigator').popPage();
             },
             openLink(url) {
+                this.$log.customEvent('Research', 'open-link', url);
                 this.$window.open(url)
             },
             getResults(useFilters) {
@@ -91,6 +93,11 @@
                 let self = this;
                 resultPromise
                     .then(function(results) {
+                        if(!results.length) {
+                            let params = self.keywords.concat(self.authors);
+                            let label = self.$route.params.name + ' + ' + params.join('&');
+                            self.$log.customEvent('Research', 'no-results', label);
+                        }
                         self.results = _.reverse(_.sortBy(results, (result) => { return result.argument_score }));
                     })
                     .catch(function(error) {
@@ -98,10 +105,16 @@
                     })
             },
             search(query) {
+                this.$log.customEvent('Research', 'search', query);
                 this.keywords = query.split(' ');
-                getResults(true);
+                this.getResults(true);
             },
             authorSelect(selection) {
+                if(this.authors === null) {
+                    this.authors = [];
+                    return;
+                }
+                this.$log.customEvent('Research', 'author', selection.join(', '));
                 this.authors = selection;
                 this.getResults(true);
             }

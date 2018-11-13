@@ -40,6 +40,8 @@
 
                 let self = this;
 
+                self.$log.customEvent('Order', 'open');
+
                 this.$refs.personalPermissions.ask()
                     .then(function(personalContext) {
                         self.Discourses.order(personalContext).then(function(){
@@ -48,10 +50,10 @@
                     })
                     .catch(function(error) {
                         if(!error) {
-                            self.$log.customEvent('Order', 'cancel', 'app');
+                            self.$log.customEvent('Order', 'cancel');
                         } else {
                             self.$log.error('Order dialogue failed', error);
-                            self.$log.customEvent('Order', 'fail', 'app');
+                            self.$log.customEvent('Order', 'fail');
                         }
                     });
             }

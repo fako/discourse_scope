@@ -136,11 +136,11 @@ class Discourses {
 
         return this.axios.post(url, data)
             .then(function() {
-                self.$log.customEvent('Order', 'done', 'app');
+                self.$log.customEvent('Order', 'done');
             })
             .catch(function(error) {
                 self.$log.error('Failed to push order', error);
-                self.$log.customEvent('Order', 'fail', 'app');
+                self.$log.customEvent('Order', 'fail');
             });
     }
 }

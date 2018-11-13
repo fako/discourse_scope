@@ -15,6 +15,7 @@
     import ApiLoader from './components/api-loader'
 
     export default {
+        dependencies: ['$log'],
         components: {ScreenSizeGuard, ApiLoader},
         name: 'app',
 
@@ -35,6 +36,8 @@
         },
 
         created() {
+            this.$log.pageView(this.$route.path);
+
             /* Define how routes should be mapped to the page stack.
              * This assumes all the routes contain VOnsPage components
              * and are provided in the 'default' view.
@@ -49,10 +52,16 @@
             mapRouteStack(this.$route);
 
             /* On route change, reset the pageStack to the next route */
-            this.$router.beforeEach((to, from, next) => mapRouteStack(to) && next());
+            let self = this;
+            this.$router.beforeEach((to, from, next) => {
+                self.$log.pageView(to.path);
+                mapRouteStack(to) && next();
+            });
 
             /* Sets the tab title */
             document.title = this.$t('message.app_title');
+
+
         },
 
         computed: {
