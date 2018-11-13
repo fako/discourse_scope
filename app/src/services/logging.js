@@ -44,7 +44,7 @@ injector.decorator('$log', function($log) {
      * PRODUCTION
      ***************************/
 
-    // In production we do nothing special after adding custom methods
+    // In non-production we do nothing special after adding custom methods
     if (process.env.NODE_ENV !== 'production') {
         return $log;
     }
