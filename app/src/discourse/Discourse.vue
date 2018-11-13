@@ -49,7 +49,8 @@
 
 <script>
 
-    import MultiSelectDropDown from '../app/components/multi-select-drop-down'
+    import _ from 'lodash';
+    import MultiSelectDropDown from '../app/components/multi-select-drop-down';
 
     export default {
         components: {MultiSelectDropDown},
@@ -74,13 +75,7 @@
                 .catch(function(error) {
                     self.$log(error);
                 });
-            this.Discourses.scope(this.$route.params.name, this.$i18n.locale)
-                .then(function(results) {
-                    self.results = results;
-                })
-                .catch(function(error) {
-                    self.$log(error);
-                })
+            this.getResults()
         },
         methods: {
             goBack() {
@@ -89,27 +84,26 @@
             openLink(url) {
                 this.$window.open(url)
             },
-            search(query) {
-                this.keywords = query.split(' ');
+            getResults(useFilters) {
+                let resultPromise = (useFilters) ?
+                    this.Discourses.scope(this.$route.params.name, this.$i18n.locale, this.keywords, this.authors) :
+                    this.Discourses.scope(this.$route.params.name, this.$i18n.locale);
                 let self = this;
-                this.Discourses.scope(this.$route.params.name, this.$i18n.locale, this.keywords, this.authors)
+                resultPromise
                     .then(function(results) {
-                        self.results = results;
+                        self.results = _.reverse(_.sortBy(results, (result) => { return result.argument_score }));
                     })
                     .catch(function(error) {
                         self.$log(error);
                     })
             },
+            search(query) {
+                this.keywords = query.split(' ');
+                getResults(true);
+            },
             authorSelect(selection) {
                 this.authors = selection;
-                let self = this;
-                this.Discourses.scope(this.$route.params.name, this.$i18n.locale, this.keywords, this.authors)
-                    .then(function(results) {
-                        self.results = results;
-                    })
-                    .catch(function(error) {
-                        self.$log(error);
-                    })
+                this.getResults(true);
             }
         }
     }
