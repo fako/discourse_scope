@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 
     let pkg = require('../../package.json');
     Sentry.init({
-        dsn: 'https://8402764df7cc487b93b15cf2163c456f@sentry.io/1277824',
+        dsn: 'https://407d0ac6dc4542c9a60fb299e32e464d@sentry.io/241870',
         release: pkg.version,
         attachStacktrace: true,
         integrations: [
