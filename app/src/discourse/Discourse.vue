@@ -49,7 +49,6 @@
 
 <script>
 
-    import _ from 'lodash';
     import MultiSelectDropDown from '../app/components/multi-select-drop-down';
 
     export default {
@@ -98,7 +97,7 @@
                             let label = self.$route.params.name + ' + ' + params.join('&');
                             self.$log.customEvent('Research', 'no-results', label);
                         }
-                        self.results = _.reverse(_.sortBy(results, (result) => { return result.argument_score }));
+                        self.results = results;
                     })
                     .catch(function(error) {
                         self.$log(error);
@@ -106,7 +105,7 @@
             },
             search(query) {
                 this.$log.customEvent('Research', 'search', query);
-                this.keywords = query.split(' ');
+                this.keywords = query.toLowerCase().split(' ');
                 this.getResults(true);
             },
             authorSelect(selection) {
