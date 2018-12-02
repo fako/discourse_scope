@@ -64,7 +64,7 @@
     $discourse-box-size: 300px;
 
     .discourse-list {
-        max-width: 920px;
+        max-width: 1014px;  // 5px margin on smallest screens
         margin: 0 auto;
     }
 
