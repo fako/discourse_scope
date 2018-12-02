@@ -74,7 +74,7 @@ class Discourses {
         });
     }
 
-    scope(name, language, keywords, authors) {
+    scope(name, language, keywords, authors, sources) {
 
         if(this.loading['scope']) {
             return this.loading['scope'];
@@ -82,13 +82,15 @@ class Discourses {
 
         keywords = keywords || [];
         authors = authors || [];
+        sources = sources || [];
         let url = this._getUrl('service', name);
         url += '?language=' + language;
         let postData = {
             action: 'scope',
             config: {
                 'keywords': keywords,
-                'author': authors.join('|')
+                'author': authors.join('|'),
+                'source': sources.join('|')
             }
         };
         let self = this;
@@ -102,18 +104,17 @@ class Discourses {
         }
 
         this.startLoading();
-        this.loading.scope = (!keywords.length && !authors.length) ?
-            this.axios.get(url).then(function handleResponse(response) {
-                return _.map(response.data.results, formatResults);
-            }) :
-            this.axios.post(url, postData).then(function handleResponse(response) {
-                return _.map(response.data.results, formatResults);
-            });
+        this.loading.scope = (!keywords.length && !authors.length && !sources.length) ?
+            this.axios.get(url) : this.axios.post(url, postData);
 
-        return this.loading.scope.finally(function() {
-            delete self.loading.scope;
-            self.stopLoading();
-        });
+        return this.loading.scope
+            .then(function handleResponse(response) {
+                return _.map(response.data.results, formatResults);
+            })
+            .finally(function() {
+                delete self.loading.scope;
+                self.stopLoading();
+            });
     }
 
     isLoading() {

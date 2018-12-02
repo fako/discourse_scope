@@ -20,6 +20,7 @@ const messages = {
             webpage_author: 'Author',
             webpage_argument_score: 'Opinion score',
             select_authors: 'Select authors',
+            select_sources: 'Select sources',
             no_results: 'No results. Try broadening your exploration by selecting less items.'
         },
         ppd: {  // personal permissions dialogue
@@ -30,8 +31,7 @@ const messages = {
             email_label: 'Email',
             permission_checkbox_text: 'I agree to be contacted once through my email address.',
             ok_label: 'Ok',
-            cancel_label: 'Cancel',
-
+            cancel_label: 'Cancel'
         }
     },
     nl: {
@@ -48,6 +48,7 @@ const messages = {
             webpage_author: 'Auteur',
             webpage_argument_score: 'Opinie score',
             select_authors: 'Selecteer auteurs',
+            select_sources: 'Selecteer bronnen',
             no_results: 'Geen resultaten. Probeer je exploratie te verbreden door minder te selecteren.'
         },
         ppd: {  // personal permissions dialogue

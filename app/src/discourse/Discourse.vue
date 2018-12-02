@@ -17,9 +17,13 @@
                 </ons-col>
             </ons-row>
             <ons-row>
-                <ons-col width="200px">
+                <ons-col width="200px" v-if="discourse.authors && discourse.authors.length">
                     <multi-select-drop-down :options="discourse.authors" :title=" $t('message.select_authors')"
                                             :onChange="authorSelect"/>
+                </ons-col>
+                <ons-col width="200px" v-if="discourse.sources && discourse.sources.length">
+                    <multi-select-drop-down :options="discourse.sources" :title=" $t('message.select_sources')"
+                                            :onChange="sourceSelect"/>
                 </ons-col>
             </ons-row>
         </div>
@@ -87,7 +91,8 @@
             },
             getResults(useFilters) {
                 let resultPromise = (useFilters) ?
-                    this.Discourses.scope(this.$route.params.name, this.$i18n.locale, this.keywords, this.authors) :
+                    this.Discourses.scope(this.$route.params.name, this.$i18n.locale,
+                        this.keywords, this.authors, this.sources) :
                     this.Discourses.scope(this.$route.params.name, this.$i18n.locale);
                 let self = this;
                 resultPromise
@@ -115,6 +120,15 @@
                 }
                 this.$log.customEvent('Research', 'author', selection.join(', '));
                 this.authors = selection;
+                this.getResults(true);
+            },
+            sourceSelect(selection) {
+                if(this.sources === null) {
+                    this.sources = [];
+                    return;
+                }
+                this.$log.customEvent('Research', 'source', selection.join(', '));
+                this.sources = selection;
                 this.getResults(true);
             }
         }
