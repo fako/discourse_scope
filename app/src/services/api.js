@@ -68,10 +68,14 @@ class Discourses {
         }
         let url = this._getUrl('discourses', id);
         let self = this;
-        return this.axios.get(url).then(function(response) {
-            self.details[response.data.id] = response.data;
-            return response.data;
-        });
+        return this.axios.get(url)
+            .then(function(response) {
+                self.details[response.data.id] = response.data;
+                return response.data;
+            })
+            .catch(function(error) {
+                self.$log.error('Error getting discourse details', error);
+            });
     }
 
     scope(name, language, keywords, authors, sources) {
@@ -110,6 +114,9 @@ class Discourses {
         return this.loading.scope
             .then(function handleResponse(response) {
                 return _.map(response.data.results, formatResults);
+            })
+            .catch(function(error) {
+                self.$log.error('Error getting scope', error);
             })
             .finally(function() {
                 delete self.loading.scope;
