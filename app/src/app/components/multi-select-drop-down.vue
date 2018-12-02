@@ -1,6 +1,6 @@
 <template>
     <div class="multi-select-drop-down" :class="{'has-selection': selection.length}">
-        <v-select multiple :onChange="onSelectChange" :options="getOptions()" :value="selection"
+        <v-select multiple :onChange="onChange" :options="getOptions()" :value="selection"
                   >
             <template slot="option" slot-scope="option">
                 <div @click="optionClick">{{ option.label }}</div>
@@ -23,29 +23,23 @@
         },
         data() {
             return {
-                selection: [],
-                isNew: false
+                selection: []
             }
         },
         methods: {
             getSelectElement() {
                 return this.$children[0];
             },
-            onSelectChange(selection) {
-                this.isNew = true;
-                this.onChange(selection);
-            },
             getOptions() {
                 let nonSelected = _.difference(this.options, this.selection);
                 return _.concat(this.selection, nonSelected);
             },
             optionClick(event) {
-                if(!this.isNew) {
-                    let label = event.target.textContent;
+                let label = event.target.textContent;
+                if(this.selection.indexOf(label) >= 0) {
                     let select = this.getSelectElement();
                     select.deselect(label);
                 }
-                this.isNew = false;
             },
             toggleDropDown() {
                 let select = this.getSelectElement();
@@ -65,6 +59,7 @@
 
     .multi-select-drop-down {
         position: relative;
+        margin-right: 20px;
 
         .v-select.searchable .dropdown-toggle {
             border-left: none;
