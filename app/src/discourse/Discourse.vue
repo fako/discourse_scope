@@ -109,8 +109,11 @@
                 let self = this;
                 resultPromise
                     .then(function(results) {
+                        if(!_.isArray(results)) {  // a weird case, why does this happen?
+                            return;
+                        }
                         if(!results.length) {
-                            let params = self.keywords.concat(self.authors);
+                            let params = self.keywords.concat(self.authors, self.sources);
                             let label = self.$route.params.name + ' + ' + params.join('&');
                             self.$log.customEvent('Research', 'no-results', label);
                         }
