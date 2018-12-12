@@ -16,7 +16,13 @@
                     <font-awesome-icon class="search-icon" icon="search" @click="search(query)"/>
                 </ons-col>
             </ons-row>
-            <ons-row>
+            <ons-row class="content-filters" v-if="discourse.most_important_words && discourse.most_important_words.length">
+                <ons-col width="400px">
+                    <multi-select-drop-down :options="discourse.most_important_words" :title=" $t('message.select_words')"
+                                            :onChange="wordsSelect"/>
+                </ons-col>
+            </ons-row>
+            <ons-row class="metadata-filters">
                 <ons-col width="200px" v-if="discourse.authors && discourse.authors.length">
                     <multi-select-drop-down :options="discourse.authors" :title=" $t('message.select_authors')"
                                             :onChange="authorSelect"/>
@@ -53,6 +59,7 @@
 
 <script>
 
+    import _ from 'lodash';
     import MultiSelectDropDown from '../app/components/multi-select-drop-down';
 
     export default {
@@ -74,6 +81,11 @@
             this.Discourses.get(this.$route.params.id, true)
                 .then(function(discourse) {
                     self.discourse = discourse;
+                    if(discourse.most_important_words) {
+                        discourse.most_important_words = _.map(discourse.most_important_words, function(topicInfo) {
+                            return (_.isArray(topicInfo)) ?topicInfo[0] : topicInfo;
+                        });
+                    }
                     self.$i18n.locale = discourse.language;
                 })
                 .catch(function(error) {
@@ -130,6 +142,12 @@
                 this.$log.customEvent('Research', 'source', selection.join(', '));
                 this.sources = selection;
                 this.getResults(true);
+            },
+            wordsSelect(selection) {
+                if(!selection.length) {
+                    return;
+                }
+                this.search(selection.join(' '));
             }
         }
     }
@@ -182,6 +200,10 @@
             ons-row {
                 padding: 0 $page-margin
             }
+        }
+
+        .content-filters + .metadata-filters {
+            margin-top: 20px;
         }
 
         .search {

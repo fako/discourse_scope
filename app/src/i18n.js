@@ -21,6 +21,7 @@ const messages = {
             webpage_argument_score: 'Opinion score',
             select_authors: 'Select authors',
             select_sources: 'Select sources',
+            select_words: 'Select important words',
             no_results: 'No results. Try broadening your exploration by selecting less items.'
         },
         ppd: {  // personal permissions dialogue
@@ -49,6 +50,7 @@ const messages = {
             webpage_argument_score: 'Opinie score',
             select_authors: 'Selecteer auteurs',
             select_sources: 'Selecteer bronnen',
+            select_words: 'Selecteer belangrijke woorden',
             no_results: 'Geen resultaten. Probeer je exploratie te verbreden door minder te selecteren.'
         },
         ppd: {  // personal permissions dialogue
