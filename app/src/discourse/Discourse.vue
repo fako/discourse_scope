@@ -16,10 +16,14 @@
                     <font-awesome-icon class="search-icon" icon="search" @click="search(query)"/>
                 </ons-col>
             </ons-row>
-            <ons-row class="content-filters" v-if="discourse.most_important_words && discourse.most_important_words.length">
-                <ons-col width="400px">
+            <ons-row class="content-filters" v-if="hasContentFilters()">
+                <ons-col width="400px" v-if="this.discourse.most_important_words && this.discourse.most_important_words.length">
                     <multi-select-drop-down :options="discourse.most_important_words" :title=" $t('message.select_words')"
-                                            :onChange="wordsSelect"/>
+                                            :onChange="searchSelect"/>
+                </ons-col>
+                <ons-col width="400px" v-if="this.discourse.most_important_people && this.discourse.most_important_people.length">
+                    <multi-select-drop-down :options="discourse.most_important_people" :title=" $t('message.select_people')"
+                                            :onChange="searchSelect"/>
                 </ons-col>
             </ons-row>
             <ons-row class="metadata-filters">
@@ -83,7 +87,15 @@
                     self.discourse = discourse;
                     if(discourse.most_important_words) {
                         discourse.most_important_words = _.map(discourse.most_important_words, function(topicInfo) {
-                            return (_.isArray(topicInfo)) ?topicInfo[0] : topicInfo;
+                            return (_.isArray(topicInfo)) ? topicInfo[0] : topicInfo;
+                        });
+                    }
+                    if(discourse.entities && discourse.entities.PERSON) {
+                        discourse.most_important_people = _.map(discourse.entities.PERSON, function(personInfo) {
+                            let person = (_.isArray(personInfo)) ? personInfo[0] : personInfo;
+                            let personName = person.split('_');
+                            personName = _.map(personName, _.capitalize);
+                            return personName.join(' ');
                         });
                     }
                     self.$i18n.locale = discourse.language;
@@ -146,11 +158,16 @@
                 this.sources = selection;
                 this.getResults(true);
             },
-            wordsSelect(selection) {
+            searchSelect(selection) {
                 if(!selection.length) {
+                    this.search('');
                     return;
                 }
                 this.search(selection.join(' '));
+            },
+            hasContentFilters() {
+                return this.discourse.most_important_words && this.discourse.most_important_words.length ||
+                    this.discourse.most_important_people && this.discourse.most_important_people.length
             }
         }
     }

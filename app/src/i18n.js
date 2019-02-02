@@ -22,6 +22,7 @@ const messages = {
             select_authors: 'Select authors',
             select_sources: 'Select sources',
             select_words: 'Select important words',
+            select_people: 'Select important people',
             no_results: 'No results. Try broadening your exploration by selecting less items.'
         },
         ppd: {  // personal permissions dialogue
@@ -51,6 +52,7 @@ const messages = {
             select_authors: 'Selecteer auteurs',
             select_sources: 'Selecteer bronnen',
             select_words: 'Selecteer belangrijke woorden',
+            select_people: 'Selecteer belangrijke mensen',
             no_results: 'Geen resultaten. Probeer je exploratie te verbreden door minder te selecteren.'
         },
         ppd: {  // personal permissions dialogue
