@@ -81,10 +81,16 @@
         },
         created() {
             this.discourse = this.Discourses.find(this.$route.params.id);
+            if(!_.isEmpty(this.discourse)) {
+                this.getResults();
+            }
             let self = this;
             this.Discourses.get(this.$route.params.id, true)
                 .then(function(discourse) {
-                    self.discourse = discourse;
+                    if(_.isEmpty(self.discourse)) {
+                        self.discourse = discourse;
+                        self.getResults();
+                    }
                     if(discourse.most_important_words) {
                         discourse.most_important_words = _.map(discourse.most_important_words, function(topicInfo) {
                             return (_.isArray(topicInfo)) ? topicInfo[0] : topicInfo;
@@ -103,7 +109,6 @@
                 .catch(function(error) {
                     self.$log(error);
                 });
-            this.getResults()
         },
         methods: {
             goBack() {
@@ -114,10 +119,14 @@
                 this.$window.open(url)
             },
             getResults(useFilters) {
+                if(_.isEmpty(this.discourse)) {
+                    this.$log.warn('Trying to get discourse results without a specified discourse');
+                    return;
+                }
                 let resultPromise = (useFilters) ?
-                    this.Discourses.scope(this.$route.params.name, this.$i18n.locale,
+                    this.Discourses.scope(this.discourse.name, this.discourse.language,
                         this.keywords, this.authors, this.sources) :
-                    this.Discourses.scope(this.$route.params.name, this.$i18n.locale);
+                    this.Discourses.scope(this.discourse.name, this.discourse.language);
                 let self = this;
                 resultPromise
                     .then(function(results) {
