@@ -34,6 +34,12 @@ const messages = {
             permission_checkbox_text: 'I agree to be contacted once through my email address.',
             ok_label: 'Ok',
             cancel_label: 'Cancel'
+        },
+        desktopGuard: {
+            header: 'Desktop only',
+            message: 'We\'re sorry but this application is desktop only for the moment. Please come back to the same address on a desktop.',
+            screenRequirement: 'If you are working on a desktop make sure you screen is at least {minimalWidth} x {minimalHeight}.',
+            screenActual: 'Currently your screen is only {innerWidth} x {innerHeight}.'
         }
     },
     nl: {
@@ -64,6 +70,12 @@ const messages = {
             permission_checkbox_text: 'Ik stem in met eenmalig contact opnemen via mijn emailadres.',
             ok_label: 'Ok',
             cancel_label: 'Annuleren'
+        },
+        desktopGuard: {
+            header: 'Alleen voor desktop',
+            message: 'Het spijt ons, maar deze applicatie is alleen geschikt voor de desktop op dit moment. Bezoek alsjeblieft hetzelfde adres op een desktop.',
+            screenRequirement: 'Als je nu werkt op een desktop zorg dan dat je scherm minimaal {minimalWidth} x {minimalHeight} is.',
+            screenActual: 'Momenteel is je scherm {innerWidth} x {innerHeight}.'
         }
     }
 };

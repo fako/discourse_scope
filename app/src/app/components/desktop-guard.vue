@@ -1,12 +1,11 @@
 <template>
-    <ons-row id="screen-size-guard" align="center" v-show="visible">
+    <ons-row id="desktop-guard" align="center" v-show="visible">
         <ons-col>
-            <h2>Screen too small</h2>
+            <h2>{{ $t('desktopGuard.header', { msg: 'hello' }) }}</h2>
             <p>
-                This application needs a screen that is at least {{ minimalWidth }} x {{ minimalHeight }}.
-                Your screen is {{ $window.innerWidth }} x {{ $window.innerHeight }}.
-                Please enlarge your screen.
-                This message will disappear when your screen is big enough.
+                {{ $t('desktopGuard.message') }}
+                {{ $t('desktopGuard.screenRequirement', { minimalWidth, minimalHeight}) }}
+                {{ $t('desktopGuard.screenActual', { innerWidth: $window.innerWidth, innerHeight: $window.innerHeight }) }}
             </p>
         </ons-col>
     </ons-row>
@@ -17,7 +16,7 @@
     import _ from 'lodash';
 
     export default {
-        name: 'screen-size-guard',
+        name: 'desktop-guard',
         dependencies: ['$window'],
         components: {},
         props: {
@@ -51,7 +50,7 @@
 
 <style lang="scss">
 
-    #screen-size-guard {
+    #desktop-guard {
         position: absolute;
         top: 0;
         left: 0;
@@ -65,7 +64,7 @@
         h2, p {
             margin: 0 auto;
             padding: 5px 20px;
-            max-width: 500px;
+            max-width: 450px;
             font-weight: 400;
         }
 

@@ -4,19 +4,19 @@
             :page-stack="pageStack"
             :pop-page="goBack"
         ></v-ons-navigator>
-        <screen-size-guard/>
+        <desktop-guard/>
         <api-loader/>
     </div>
 </template>
 
 <script>
 
-    import ScreenSizeGuard from "./components/screen-size-guard";
+    import DesktopGuard from "./components/desktop-guard";
     import ApiLoader from './components/api-loader'
 
     export default {
         dependencies: ['$log'],
-        components: {ScreenSizeGuard, ApiLoader},
+        components: {DesktopGuard, ApiLoader},
         name: 'app',
 
         data() {
