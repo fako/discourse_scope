@@ -81,16 +81,11 @@
         },
         created() {
             this.discourse = this.Discourses.find(this.$route.params.id);
-            if(!_.isEmpty(this.discourse)) {
-                this.getResults();
-            }
             let self = this;
             this.Discourses.get(this.$route.params.id, true)
                 .then(function(discourse) {
-                    if(_.isEmpty(self.discourse)) {
-                        self.discourse = discourse;
-                        self.getResults();
-                    }
+                    self.discourse = discourse;
+                    self.getResults();
                     if(discourse.most_important_words) {
                         discourse.most_important_words = _.map(discourse.most_important_words, function(topicInfo) {
                             return (_.isArray(topicInfo)) ? topicInfo[0] : topicInfo;
