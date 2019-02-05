@@ -1,3 +1,5 @@
+let Url = require('url-parse');
+
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 
@@ -81,8 +83,33 @@ const messages = {
 };
 
 
+function getCurrentLanguage(languageDefault) {
+
+    let languages = _.keys(messages);
+    let language = languageDefault;
+
+    // Check browser preference
+    let locale = navigator.language;
+    let browserLanguage = locale.split('-')[0];
+    browserLanguage = browserLanguage.toLowerCase();
+    if(browserLanguage && languages.indexOf(browserLanguage) >= 0) {
+        language = browserLanguage;
+    }
+
+    // Override language with request language
+    let url = new Url(window.location, true);
+    let requestLanguage = url.query.lang;
+    if(requestLanguage && languages.indexOf(requestLanguage) >= 0) {
+        language = requestLanguage
+    }
+
+    return language;
+
+}
+
+
 const i18n = new VueI18n({
-    locale: 'nl',
+    locale: getCurrentLanguage('nl'),
     messages
 });
 
