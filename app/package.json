@@ -13,10 +13,10 @@
         "@fortawesome/free-solid-svg-icons": "5.4.2",
         "@fortawesome/vue-fontawesome": "0.1.2",
         "@sentry/browser": "4.3.0",
-        "axios": "0.18.0",
+        "axios": "0.19.0",
         "i": "0.3.6",
-        "lodash": "4.17.11",
-        "npm": "6.4.1",
+        "lodash": "4.17.15",
+        "npm": "6.10.3",
         "onsenui": "2.10.6",
         "url-parse": "1.4.3",
         "vue": "2.5.17",
@@ -27,11 +27,12 @@
         "vue-select": "2.5.1"
     },
     "devDependencies": {
-        "@vue/cli-plugin-babel": "3.0.4",
+        "@vue/cli-plugin-babel": "3.10.0",
         "@vue/cli-plugin-eslint": "3.0.4",
-        "@vue/cli-service": "3.0.4",
+        "@vue/cli-service": "3.10.0",
         "moxios": "0.4.0",
         "node-sass": "4.9.4",
+        "portfinder": "1.0.21",
         "sass-loader": "7.1.0",
         "vue-template-compiler": "2.5.17"
     },
