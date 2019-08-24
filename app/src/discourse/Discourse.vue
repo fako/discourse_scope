@@ -76,7 +76,8 @@
                 results: [],
                 query: '',
                 authors: null,
-                keywords: []
+                keywords: [],
+                loading: false
             }
         },
         created() {
@@ -118,11 +119,16 @@
                     this.$log.warn('Trying to get discourse results without a specified discourse');
                     return;
                 }
+                if(this.loading) {
+                    return;
+                }
+
                 let resultPromise = (useFilters) ?
                     this.Discourses.scope(this.discourse.name, this.discourse.language,
                         this.keywords, this.authors, this.sources) :
                     this.Discourses.scope(this.discourse.name, this.discourse.language);
                 let self = this;
+                this.loading = true;
                 resultPromise
                     .then(function(results) {
                         if(!_.isArray(results)) {  // a weird case, why does this happen?
@@ -137,6 +143,9 @@
                     })
                     .catch(function(error) {
                         self.$log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false
                     })
             },
             search(query) {
