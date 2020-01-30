@@ -87,7 +87,7 @@ class Discourses {
         keywords = keywords || [];
         authors = authors || [];
         sources = sources || [];
-        let url = this._getUrl('service', name);
+        let url = this._getUrl('search', name);
         url += '?language=' + language;
         let postData = {
             action: 'scope',
@@ -103,7 +103,7 @@ class Discourses {
             let url = new Url(result['url']);
             let hostname = url.hostname;
             result.source =  (!hostname.startsWith('www.')) ? hostname : hostname.replace('www.', '');
-            result.argument_score = _.round(result.argument_score, 3);
+            result.argument_score = (_.isNumber(result.argument_score)) ? _.round(result.argument_score, 3) : 0;
             return result
         }
 
