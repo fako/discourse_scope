@@ -72,6 +72,10 @@
         margin-top: 100px;
     }
 
+    ons-row:last-child {
+        margin-bottom: 40px;
+    }
+
     .discourse {
         position: relative;
         width: $discourse-box-size;
