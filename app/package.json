@@ -4,7 +4,6 @@
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
-        "integrate": "vue-cli-service serve --mode=integration",
         "build": "rm -rf dist/${npm_package_version} && vue-cli-service build --dest=.tmp && cp package.json .tmp/ && mkdir -p dist && mv .tmp/ dist/${npm_package_version}",
         "lint": "vue-cli-service lint"
     },
