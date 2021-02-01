@@ -14,6 +14,7 @@ function getParameterByName(name) {
 injector.constant('axios', axios);
 
 injector.constant('apiRoot', process.env.VUE_APP_API_URL);
+injector.constant('staticsPrefix', window.STATICS_PREFIX || '/');
 
 injector.constant('utm', {
     source: getParameterByName('utm_source'),

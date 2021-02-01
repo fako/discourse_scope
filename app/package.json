@@ -2,9 +2,12 @@
     "name": "discourse-scope",
     "version": "0.3.0",
     "private": true,
+    "config": {
+        "mode": "django"
+    },
     "scripts": {
         "serve": "vue-cli-service serve",
-        "build": "rm -rf dist/${npm_package_version} && vue-cli-service build --dest=.tmp && cp package.json .tmp/ && mkdir -p dist && mv .tmp/ dist/${npm_package_version}",
+        "build": "vue-cli-service build",
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
@@ -34,7 +37,8 @@
         "node-sass": "4.13.1",
         "portfinder": "1.0.21",
         "sass-loader": "7.1.0",
-        "vue-template-compiler": "2.5.17"
+        "vue-template-compiler": "2.5.17",
+        "webpack-bundle-tracker": "0.4.3"
     },
     "eslintConfig": {
         "root": true,

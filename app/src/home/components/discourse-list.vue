@@ -4,7 +4,7 @@
             <ons-col v-for="discourse in row" v-bind:key="discourse.id">
                 <div class="discourse" v-on:click="goToDiscourse(discourse)">
                     <div>
-                        <img v-bind:src="'images/icon-' + discourse.id % 8 + '.svg'"/>
+                        <img v-bind:src="staticsPrefix + 'images/icon-' + discourse.id % 8 + '.svg'"/>
                     </div>
                     <div class="info-box">
                         <h2>{{ discourse.title }}</h2>
@@ -25,7 +25,7 @@
 
     export default {
         name: 'discourse-list',
-        dependencies : ['$log', 'Discourses'],
+        dependencies : ['$log', 'staticsPrefix', 'Discourses'],
         data() {
             return {
                 discourses: {}
