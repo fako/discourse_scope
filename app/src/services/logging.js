@@ -1,5 +1,6 @@
+import Vue from 'vue'
 import * as Sentry from '@sentry/browser';
-
+import { Vue as VueIntegration } from '@sentry/integrations'
 import injector from 'vue-inject';
 
 
@@ -15,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
                 onerror: true,
                 onunhandledrejection: true
             }),
-            new Sentry.Integrations.Vue({})
+            new VueIntegration({Vue, attachProps: true, logErrors: true})
         ],
     });
 
