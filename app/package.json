@@ -34,7 +34,7 @@
         "@vue/cli-plugin-eslint": "3.0.4",
         "@vue/cli-service": "3.10.0",
         "moxios": "0.4.0",
-        "node-sass": "4.13.1",
+        "node-sass": "7.0.0",
         "portfinder": "1.0.21",
         "sass-loader": "7.1.0",
         "vue-template-compiler": "2.5.17",
