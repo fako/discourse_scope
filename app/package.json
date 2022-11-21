@@ -30,13 +30,17 @@
         "vue-select": "2.5.1"
     },
     "devDependencies": {
-        "@vue/cli-plugin-babel": "3.10.0",
-        "@vue/cli-plugin-eslint": "3.0.4",
-        "@vue/cli-service": "3.10.0",
+        "@babel/eslint-parser": "7.17.0",
+        "@vue/cli-plugin-babel": "5.0.4",
+        "@vue/cli-plugin-eslint": "5.0.4",
+        "@vue/cli-service": "5.0.4",
+        "core-js": "^3.26.1",
+        "eslint": "8.13.0",
+        "eslint-plugin-vue": "8.6.0",
         "moxios": "0.4.0",
-        "node-sass": "4.13.1",
+        "node-sass": "8.0.0",
         "portfinder": "1.0.21",
-        "sass-loader": "7.1.0",
+        "sass-loader": "13.2.0",
         "vue-template-compiler": "2.5.17",
         "webpack-bundle-tracker": "0.4.3"
     },
@@ -49,9 +53,11 @@
             "plugin:vue/essential",
             "eslint:recommended"
         ],
-        "rules": {},
+        "rules": {
+            "vue/multi-word-component-names": "off"
+        },
         "parserOptions": {
-            "parser": "babel-eslint"
+            "parser": "@babel/eslint-parser"
         }
     },
     "postcss": {
