@@ -58,12 +58,16 @@ injector.decorator('$log', function($log) {
     $log._customEvent = $log.customEvent;
 
     $log.pageView = function(page) {
-        window.ga('send', 'pageview', page);
+        window.gtag('event', 'page_view', { 'page_path': page });
         $log._pageView(page);
     };
 
     $log.customEvent = function(category, action, label) {
-        window.ga('send', 'event', category, action, label);
+        window.gtag('event', action, {  // "social_click" is a custom event name
+            'event_category': category,  // Categorize this event
+            'event_label': label,
+            'transport_type': 'beacon'  // Ensures the event is sent before the page unloads
+        });
         $log._customEvent(category, action, label);
     };
 
