@@ -4,7 +4,7 @@ const packageJSON = require('./package.json');
 const appDirectory = packageJSON.name + '/' + packageJSON.version + '/';
 const djangoPublicPath = '/static/builds/' + appDirectory;
 const distDirectory = './dist/' + packageJSON.version + '/';
-const webpackStatsFile = distDirectory + packageJSON.name + '-' + packageJSON.version + '.webpack-stats.json';
+const webpackStatsFile = packageJSON.name + '-' + packageJSON.version + '.webpack-stats.json';
 
 
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
 
         config
             .plugin('BundleTracker')
-            .use(BundleTracker, [{filename: webpackStatsFile}]);
+            .use(BundleTracker, [{filename: webpackStatsFile, path: distDirectory}]);
 
         config.output.filename('[name].[hash:8].js')
 
